@@ -9,6 +9,13 @@ text-section:
     - sub-heading: This is a subheading
       text: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit vel voluptate magni quam deserunt alias in voluptatem ex quae rerum? Suscipit in tempore provident cupiditate expedita fugit aut vero libero.
       img: https://picsum.photos/id/564/600/400
+images-grid: 
+    - img: https://picsum.photos/id/684/600/400?blur=5"
+      img-alt-text: Alt Text
+    - img: https://picsum.photos/id/684/600/400?blur=5"
+      img-alt-text: Alt Text
+    - img: https://picsum.photos/id/684/600/400?blur=5"
+      img-alt-text: Alt Text
 ---
 <!-- Featured Products - F -->
 <section class="grid grid-cols-5 gap-5">
@@ -80,14 +87,15 @@ text-section:
 </section>
 
 <!-- Images - F? -->
-<section div="grid md:grid-cols-4 gap-2">
-
-    <img src="https://picsum.photos/id/1076/600/400" alt="">
+<section class="grid md:grid-cols-4 gap-2">
+    {% for item in page.images-grid %}
+    <img src="{{item.img}}" alt="{{item.img-alt-text}}">
+    {% endfor %}
 </section>
 
 <!-- Pricing -->
 <section class="grid gap-1 grid-cols-2 flex items-center">
-    <img src="https://picsum.photos/id/1020/600/400" alt="" class="">
+    <img src="https://picsum.photos/600/400?random" alt="" class="">
     <div class="">
         <h2>Product name</h2>
         <p>Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium repudiandae nesciunt nemo placeat totam maxime eligendi eaque laudantium molestiae quibusdam dolorem, voluptatibus cumque accusamus, rerum ut, expedita quaerat omnis at?</p>
@@ -100,20 +108,19 @@ text-section:
 <section class="text-center">
 	<h4 class=""> Related Products </h4>
 	<div class="grid gap-2 grid-cols-1 md:grid-cols-3 p-6">
-		{% assign pageCategory = page.categories[0] %}
-		{% assign relevant = site.categories[pageCategory] | where_exp:"post","post.url != page.url" %}
-    
+
+        {% assign relevant = site.ebooks | where_exp:"book","book.url != page.url" %}
+        
         <!-- Add where_exp"? -->
-  		{% for post in relevant limit:3 %}
-            <a href="{{post.url}}">
-                <div class=""> 
-                    <img src="{{post.image_path}}" class="object-cover w-full h-[50vh]"/>
-                </div>
-                <span class="author uppercase">by {{post.author}}</span> //
-                <span class="author"> {{post.date | date: "%m.%d.%Y" }} </span>
-                <h3 class="uppercase"> {{post.title}} </h3>
+        {% for book in relevant limit:3 %}
+        <a href="{{book.url}}">
+            <div class=""> 
+                <img src="{{book.img}}" class="object-cover w-full h-[50vh]"/>
+            </div>
+            <h3 class="uppercase"> {{book.product-name}} </h3>
+            <span class="author uppercase">by {{book.author}}</span>
             </a>
-  		{% endfor %}
+            {% endfor %}
 	</div>
 </section>
 
