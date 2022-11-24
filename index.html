@@ -1,48 +1,88 @@
 ---
 layout: default
 title: Homepage
+flipped: false
+text-section: 
+    - sub-heading: This is a subheading
+      text: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit vel voluptate magni quam deserunt alias in voluptatem ex quae rerum? Suscipit in tempore provident cupiditate expedita fugit aut vero libero.
+      img: https://picsum.photos/id/642/600/400
+    - sub-heading: This is a subheading
+      text: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit vel voluptate magni quam deserunt alias in voluptatem ex quae rerum? Suscipit in tempore provident cupiditate expedita fugit aut vero libero.
+      img: https://picsum.photos/id/564/600/400
 ---
 <!-- Featured Products - F -->
-<section class="grid grid-cols-5 gap">
+<section class="grid grid-cols-5 gap-5">
     {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
-    {% for item in featuredProducts %}
+    {% for item in featuredProducts limit:5 %}
     <!-- cycle or ifelse  -->
-    <div class="{% if forloop.index == 2 %}col-span-3{% endif %}">
-        <img src="https://picsum.photos/id/237/600/400" alt="">
-        <h3>Product name</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est incidunt et, mollitia molestiae tenetur deserunt illo magni quidem.</p>
-        <a href="" class="button border p-2 inline-block">Shop</a>
+    <div class="{% if forloop.index == 2 %}col-span-3 row-span-2{% endif %}">
+        <img src="{{item.img}}" alt="">
+        <h3>{{item.product-name}}</h3>
+        <p>{{item.product-description}}</p>
+        <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="grid grid-cols-5 gap-5">
+    {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
+    {% for item in featuredProducts limit:3 %}
+    <!-- cycle or ifelse  -->
+    <div class="{% if forloop.index == 2 %}col-span-3 row-span-2{% endif %}">
+        <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
+        <h3>{{item.product-name}}</h3>
+        <p>{{item.product-description}}</p>
+        <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
     </div>
     {% endfor %}
 </section>
 
 <!-- Testimonials - F -->
 <section>
-    
+    {% for item in site.data.testimonials %}
+    <div class="grid grid-cols-7">
+        <p class="grid-cols-1">"</p>
+        <div class="grid-cols-5">
+            <p>{{item.testimonial}}</p>
+            <p>{{item.customer-name}}</p>
+        </div>
+        <p class="grid-cols-1">"</p>
+    </div>
+    {% endfor %}
 </section>
 
+<!-- object-center object-cover -- For imgs lets you set custom size to img -->
 <!-- Sneak Peak - F?  -->
 <section>
-    
+    <h2 class="text-center text-2xl">Sneak Peak</h2>
+    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus hic exercitationem sed sapiente harumem!</p>
+    <div class="grid grid-cols-2 py-4">
+            <img src="https://picsum.photos/id/1020/600/400" alt="">
+        <div>
+            <p>This is a subheading/ product name</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit minus quod ratione repellat est maxime vero veniam, nemo ducimus dolore voluptas facere necessitatibus quisquam officia? Error quas corporis autem sapiente.</p>
+        </div>
+    </div>
 </section>
 
-<!-- Introduction - use banner  -->
+<!-- Introduction - use banner or text + imgs -->
 <section>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore maiores, sunt dolorum sed iste tempora, doloremque laudantium numquam facere itaque culpa blanditiis fugit deleniti, quasi quo corrupti odio voluptatem? Eveniet?</p>
-
 </section>
 
 <!-- FAQ - F -->
-<section >
-    <div>
-
+<section class="grid grid-cols-4 gap-2">
+    {% for item in site.data.faqs %}
+    <div class="md:grid-cols-2"> 
+        <span>{{item.question}}</span>
+        <span>{{item.answer}}</span>
     </div>
-    
+    {% endfor %}
 </section>
 
 <!-- Images - F? -->
-<section>
-    
+<section div="grid md:grid-cols-4 gap-2">
+
+    <img src="https://picsum.photos/id/1076/600/400" alt="">
 </section>
 
 <!-- Pricing -->
@@ -56,25 +96,68 @@ title: Homepage
 </section>
 
 <!-- Related Products - F -->
-<section>
+<!-- needs custimization to this project -->
+<section class="text-center">
+	<h4 class=""> Related Products </h4>
+	<div class="grid gap-2 grid-cols-1 md:grid-cols-3 p-6">
+		{% assign pageCategory = page.categories[0] %}
+		{% assign relevant = site.categories[pageCategory] | where_exp:"post","post.url != page.url" %}
     
+        <!-- Add where_exp"? -->
+  		{% for post in relevant limit:3 %}
+            <a href="{{post.url}}">
+                <div class=""> 
+                    <img src="{{post.image_path}}" class="object-cover w-full h-[50vh]"/>
+                </div>
+                <span class="author uppercase">by {{post.author}}</span> //
+                <span class="author"> {{post.date | date: "%m.%d.%Y" }} </span>
+                <h3 class="uppercase"> {{post.title}} </h3>
+            </a>
+  		{% endfor %}
+	</div>
 </section>
 
 <!-- Text (text flows from one column to two)-->
 <section class="">
+    <!-- Also good for different sized images -->
     <div class="md:columns-4">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur veniam laborum quae exercitationem culpa adipisci commodi officiis repellat, eum in ipsum quis, debitis dignissimos dolorum dolores magnam pariatur! Fuga, similique. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia eveniet dolores reprehenderit, rem ullam suscipit, aliquam quisquam laboriosam non voluptate provident, iusto atque? At ex excepturi totam, adipisci necessitatibus ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eos quidem sequi distinctio vel id necessitatibus at modi, fuga quisquam tempora possimus asperiores ad dolorem dignissimos, inventore blanditiis delectus perspiciatis.</p>
     </div>
 </section>
 
-<!-- Text and Image - F? -->
-<section>
-    
+<!-- Text and Image - F + flip -->
+<!-- define "text-section" in front matter of page section is used on -->
+{% for item in page.text-section %}
+<section class="grid md:grid-cols-2 flex items-center">
+    <div class="{% cycle 'col-start-2', '' %}">
+        <h3>{{item.sub-heading}}</h3>
+        <p>{{item.text}}</p>
+    </div>
+    <div class="{% cycle 'col-start-1 row-start-1', '' %}">
+        <img src="{{item.img}}" alt="">
+    </div>
+</section>
+{% endfor %}
+
+<!-- Text and Image - flip div -->
+<section class="grid md:grid-cols-2 flex items-center">
+    <div class="{% if page.flipped == true %} col-start-2 {% endif %}">
+        <h3>{{item.sub-heading}}</h3>
+        <p>{{item.text}}</p>
+    </div>
+    <div class="{% if page.flipped == true %} col-start-1 row-start-1 {% endif %}">
+        <img src="{{item.img}}" alt="">
+    </div>
 </section>
 
-<!-- Reviews - F -->
-<section>
 
+<!-- Reviews - F -->
+<section class="">
+    <div class="grid grid-cols-7">
+        <p class="grid-cols-1">"</p>
+        <p class="grid-cols-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae vero aspernatur reprehenderit repellat, blanditiis nobis nostrum optio hic, placeat doloremque aperiam, repellendus consequatur rerum voluptatibus quod saepe iure repudiandae consectetur.</p>
+        <p class="grid-cols-1">"</p>
+    </div>
 </section>
 
 <!-- Before and After - F? -->
@@ -82,9 +165,28 @@ title: Homepage
     
 </section>
 
-<!-- Gallery - F -->
+<!-- Gallery - Filterable -->
 <section>
-    
+    <div class="gird-cols-1 grid gap-2 min-h-[50vh] md:min-h-[80vh] md:grid-cols-4 py-10 mx-10">
+        {% for item in site.ebooks limit:3 %}
+        <a href="{{item.url}}" class="bg-blue-100 p-4 bg-cover bg-center relative inline-block h-[50vh] md:h-full {% cycle 'col-span-1', 'col-span-1 md:col-span-2 md:row-span-2', 'col-span-1', 'col-span-1' %}" style="background-image:url('{{item.img}}'); order:{{forloop.index}}">
+            <div class="absolute inset-0 hover:bg-zinc-600/[.9] p-4 text-transparent flex justify-left items-center hover:text-white transition duration-500">
+                <div>
+                    <h2 class="text-3xl playfair">{{item.product-name}}</h2>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% for item in site.presets limit:3 %}
+        <a href="{{item.url}}" class="bg-blue-100 p-4 bg-cover bg-center relative inline-block h-[50vh] md:h-full {% cycle 'col-span-1', 'col-span-1 md:col-span-2 md:row-span-2', 'col-span-1', 'col-span-1' %}" style="background-image:url('{{item.img}}'); order:{{forloop.index}}">
+            <div class="absolute inset-0 hover:bg-zinc-600/[.9] p-4 text-transparent flex justify-left items-center hover:text-white transition duration-500">
+                <div>
+                    <h2 class="text-3xl playfair">{{item.product-name}}</h2>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
 </section>
 
 <!-- Banner (want bg-img, text, and overlay changable) -->
