@@ -1,0 +1,5 @@
+collections:
+  ebooks: 
+    output: true
+  presets:
+    output: true
