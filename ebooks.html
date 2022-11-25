@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<!-- ----------- Featured eBook ----------- -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-2 bg-slate-100">
+    {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
+    {% for item in featuredProducts limit:3 %}
+    <!-- cycle or ifelse  -->
+    <div class="{% if forloop.index == 2 %} col-span-2 md:col-span-3 md:row-span-2{% endif %} {% if forloop.index >= 3 %} hidden md:block {% endif %}">
+        <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
+        <div class="py-4 pr-4">
+            <h3>{{item.product-name}}</h3>
+            <p>{{item.product-tag-line}}</p>
+            <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
