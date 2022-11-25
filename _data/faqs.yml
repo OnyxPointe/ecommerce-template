@@ -1,10 +1,14 @@
 - question: Is it raining?
   answer: 'yes'
+  type: 
 - question: Is this too confusing?
   answer: >- 
     yes
+  type: 
 - question: Is it raining?
   answer: 'yes'
+  type:
 - question: Is this too confusing?
   answer: >- 
     yes
+  type: 

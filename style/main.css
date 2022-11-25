@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
  
-.button {
+/* .button {
     @apply inline-block p-6 bg-blue-600 text-white hover:bg-blue-800 transition;
+} */
+
+.logo{
+    @apply font-featured text-5xl;
+}
+
+nav a{
+    padding: .2rem .5rem;
+    margin: 0 .2rem;
 }
 
 section{padding:5%;}
+
+/* .p-one{font-family: "Poiret One", cursive;} */
+
+.playfair{
+    font-family: "Playfair Display", serif;
+}

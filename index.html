@@ -10,14 +10,32 @@ text-section:
       text: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit vel voluptate magni quam deserunt alias in voluptatem ex quae rerum? Suscipit in tempore provident cupiditate expedita fugit aut vero libero.
       img: https://picsum.photos/id/564/600/400
 images-grid: 
-    - img: https://picsum.photos/id/684/600/400?blur=5"
+    - img: https://images.unsplash.com/photo-1581388847562-d5a56eec1cfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60
       img-alt-text: Alt Text
-    - img: https://picsum.photos/id/684/600/400?blur=5"
+    - img: https://images.unsplash.com/photo-1609895314390-cb64c186466a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZWJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60
       img-alt-text: Alt Text
-    - img: https://picsum.photos/id/684/600/400?blur=5"
+    - img: https://images.unsplash.com/photo-1519885277449-12eee5564d68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fG1hcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+    - img: https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fG1hcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60
       img-alt-text: Alt Text
 ---
-<!-- Featured Products - F -->
+<!-- Featured Products - With limit -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-2 bg-slate-100">
+    {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
+    {% for item in featuredProducts limit:3 %}
+    <!-- cycle or ifelse  -->
+    <div class="{% if forloop.index == 2 %} col-span-2 md:col-span-3 md:row-span-2{% endif %}">
+        <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
+        <div class="py-4 pr-4">
+            <h3>{{item.product-name}}</h3>
+            <p>{{item.product-tag-line}}</p>
+            <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- Featured Products - With grid of 5 -->
 <section class="grid grid-cols-5 gap-5">
     {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
     {% for item in featuredProducts limit:5 %}
@@ -31,21 +49,25 @@ images-grid:
     {% endfor %}
 </section>
 
-<section class="grid grid-cols-5 gap-5">
+<!-- Featured Products - With different limit on mobile vs lg screen -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-2 bg-slate-100">
     {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
     {% for item in featuredProducts limit:3 %}
     <!-- cycle or ifelse  -->
-    <div class="{% if forloop.index == 2 %}col-span-3 row-span-2{% endif %}">
+    <div class="{% if forloop.index == 2 %} col-span-2 md:col-span-3 md:row-span-2{% endif %} {% if forloop.index >= 3 %} hidden md:block {% endif %}">
         <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
-        <h3>{{item.product-name}}</h3>
-        <p>{{item.product-description}}</p>
-        <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+        <div class="py-4 pr-4">
+            <h3>{{item.product-name}}</h3>
+            <p>{{item.product-tag-line}}</p>
+            <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+        </div>
     </div>
     {% endfor %}
 </section>
 
+
 <!-- Testimonials - F -->
-<section>
+<section class="">
     {% for item in site.data.testimonials %}
     <div class="grid grid-cols-7">
         <p class="grid-cols-1">"</p>
@@ -63,25 +85,37 @@ images-grid:
 <!-- object-center object-cover -- For imgs lets you set custom size to img -->
 <!-- Sneak Peak - F?  -->
 <section>
-    <h2 class="text-center text-2xl">Sneak Peak</h2>
+    <h2 class="text-center text-5xl font-bold">Sneak Peak</h2>
     <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus hic exercitationem sed sapiente harumem!</p>
-    <div class="grid grid-cols-2 py-4">
-            <img src="https://picsum.photos/id/1020/600/400" alt="">
-        <div>
-            <p>This is a subheading/ product name</p>
+    <div class="grid md:grid-cols-2 py-6 flex items-center">
+        <img src="https://picsum.photos/id/1020/600/400" alt="">
+        <div class="p-4">
+            <p class="italic text-xl">This is a subheading/ product name</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit minus quod ratione repellat est maxime vero veniam, nemo ducimus dolore voluptas facere necessitatibus quisquam officia? Error quas corporis autem sapiente.</p>
         </div>
     </div>
 </section>
 
 <!-- Introduction - use banner or text + imgs -->
-<section>
-</section>
+<!-- <section>
+</section> -->
 
 <!-- FAQ - F -->
-<section class="grid grid-cols-4 gap-2">
+<section class="grid gap-2 bg-slate-100">
+    <h3 class="text-center text-5xl font-bold mb-2">FAQs</h3>
     {% for item in site.data.faqs %}
-    <div class="md:grid-cols-2"> 
+    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded"> 
+        <span>{{item.question}}</span>
+        <span>{{item.answer}}</span>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- Add in type -->
+<section class="grid gap-2 bg-slate-100">
+    <h3 class="text-center text-5xl font-bold mb-2">FAQs</h3>
+    {% for item in site.data.faqs %}
+    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded"> 
         <span>{{item.question}}</span>
         <span>{{item.answer}}</span>
     </div>
@@ -91,12 +125,28 @@ images-grid:
 <!-- Images - F? -->
 <section class="grid md:grid-cols-4 gap-2">
     {% for item in page.images-grid %}
-    <img src="{{item.img}}" alt="{{item.img-alt-text}}">
+    <img src="{{item.img}}" alt="{{item.img-alt-text}}"" class="object-cover w-full h-[50vh]">
     {% endfor %}
 </section>
 
 <!-- Pricing -->
-<section class="grid gap-1 grid-cols-2 flex items-center">
+<section class="grid gap-3 md:grid-cols-3 flex bg-slate-100">
+    {% for item in site.ebooks limit:9 %}
+    <div class="p-2 bg-zinc-300 justify-center">
+        <div class="pb-2"> 
+                <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
+            </div>
+        <div class="grid grid-cols-4">
+            <p class="w-full p-2 col-span-3">{{item.product-name}}</p>
+            <p class="text-right p-2 col-span-1">{{item.price}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+
+<!-- Pricing img and text-->
+<section class="grid gap-1 grid-cols-3 flex items-center">
     <img src="https://picsum.photos/600/400?random" alt="" class="">
     <div class="">
         <h2>Product name</h2>
@@ -107,49 +157,47 @@ images-grid:
 
 <!-- Related Products - F -->
 <!-- needs custimization to this project -->
-<section class="text-center">
-	<h4 class=""> Related Products </h4>
-	<div class="grid gap-2 grid-cols-1 md:grid-cols-3 p-6">
-
+<section class="text-center bg-slate-100">
+	<h4 class="text-2xl blod"> Related Products </h4>
+	<div class="grid gap-8 md:gap-2 grid-cols-1 md:grid-cols-3 p-6">
         {% assign relevant = site.ebooks | where_exp:"book","book.url != page.url" %}
-        
-        <!-- Add where_exp"? -->
         {% for book in relevant limit:3 %}
         <a href="{{book.url}}">
-            <div class=""> 
+            <div class="pb-2"> 
                 <img src="{{book.img}}" class="object-cover w-full h-[50vh]"/>
             </div>
             <h3 class="uppercase"> {{book.product-name}} </h3>
             <span class="author uppercase">by {{book.author}}</span>
-            </a>
-            {% endfor %}
+        </a>
+        {% endfor %}
 	</div>
 </section>
 
 <!-- Text (text flows from one column to two)-->
-<section class="">
+<section>
     <!-- Also good for different sized images -->
     <div class="md:columns-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur veniam laborum quae exercitationem culpa adipisci commodi officiis repellat, eum in ipsum quis, debitis dignissimos dolorum dolores magnam pariatur! Fuga, similique. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia eveniet dolores reprehenderit, rem ullam suscipit, aliquam quisquam laboriosam non voluptate provident, iusto atque? At ex excepturi totam, adipisci necessitatibus ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eos quidem sequi distinctio vel id necessitatibus at modi, fuga quisquam tempora possimus asperiores ad dolorem dignissimos, inventore blanditiis delectus perspiciatis.</p>
+        <h2 class="px-4 text-lg uppercase">Heading</h2>
+        <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur veniam laborum quae exercitationem culpa adipisci commodi officiis repellat, eum in ipsum quis, debitis dignissimos dolorum dolores magnam pariatur! Fuga, similique. Lorem ipsum dolor sit aique. Lorem ipsum dolor smet consectetur adipisicing elit. Officia eveniet dolores reprehenderit, rem ullam suscipit, aliquam quisquam laboriosam non voluptate provident, iusto atque? At ex excepturi totam, adipisci necessitatibus ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eos quidem sequi distinctio vel id necessitatibus at modi, fuga quisquam tempora possimus asperiores ad dolorem dignissimos, inventore blanditiis delectus perspiciatis.</p>
     </div>
 </section>
 
-<!-- Text and Image - F + flip -->
+<!-- Text and Image - F + fancy flip -->
 <!-- define "text-section" in front matter of page section is used on -->
 {% for item in page.text-section %}
-<section class="grid md:grid-cols-2 flex items-center">
-    <div class="{% cycle 'col-start-2', '' %}">
-        <h3>{{item.sub-heading}}</h3>
+<section class="grid md:grid-cols-2 flex items-center bg-slate-100 gap-4">
+    <div class="{% cycle 'md:col-start-2', '' %}">
+        <h3 class="text-lg italic bold">{{item.sub-heading}}</h3>
         <p>{{item.text}}</p>
     </div>
-    <div class="{% cycle 'col-start-1 row-start-1', '' %}">
+    <div class="{% cycle 'md:col-start-1 md:row-start-1', '' %}">
         <img src="{{item.img}}" alt="">
     </div>
 </section>
 {% endfor %}
 
 <!-- Text and Image - flip div -->
-<section class="grid md:grid-cols-2 flex items-center">
+<section class="grid md:grid-cols-2 flex items-center bg-red-200">
     <div class="{% if page.flipped == true %} col-start-2 {% endif %}">
         <h3>{{item.sub-heading}}</h3>
         <p>{{item.text}}</p>
@@ -161,21 +209,22 @@ images-grid:
 
 
 <!-- Reviews - F -->
-<section class="">
-    <div class="grid grid-cols-7">
-        <p class="grid-cols-1">"</p>
-        <p class="grid-cols-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae vero aspernatur reprehenderit repellat, blanditiis nobis nostrum optio hic, placeat doloremque aperiam, repellendus consequatur rerum voluptatibus quod saepe iure repudiandae consectetur.</p>
-        <p class="grid-cols-1">"</p>
+<section class="bg-slate-100">
+    <div class="grid grid-cols-7 pb-6">
+        <p class="col-span-1">"</p>
+        <h3 class="col-span-5 text-1xl blod text-center">Love from our clients</h3>
+        <p class="col-span-1 text-right">"</p>
     </div>
+        <p class="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae vero aspernatur reprehenderit repellat, blanditiis nobis nostrum optio hic, placeat doloremque aperiam.</p>
 </section>
 
 <!-- Before and After - F? -->
-<section>
+<!-- <section>
     
-</section>
+</section> -->
 
 <!-- Gallery - Filterable -->
-<section>
+<section class="">
     <div class="gird-cols-1 grid gap-2 min-h-[50vh] md:min-h-[80vh] md:grid-cols-4 py-10 mx-10">
         {% for item in site.ebooks limit:3 %}
         <a href="{{item.url}}" class="bg-blue-100 p-4 bg-cover bg-center relative inline-block h-[50vh] md:h-full {% cycle 'col-span-1', 'col-span-1 md:col-span-2 md:row-span-2', 'col-span-1', 'col-span-1' %}" style="background-image:url('{{item.img}}'); order:{{forloop.index}}">
@@ -199,6 +248,6 @@ images-grid:
 </section>
 
 <!-- Banner (want bg-img, text, and overlay changable) -->
-<section style="background-image:url('https://picsum.photos/id/1025/600/400')" class="bg-cover h-[50vh] flex justify-center items-center">
+<section style="background-image:url('https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60')" class="bg-cover h-[60vh] flex justify-center items-center bg-slate-100">
     <h3 class="text-2xl">This is a banner heading</h3>
 </section>

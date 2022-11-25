@@ -1,0 +1,39 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO META Tags -->
+    <title> {{page.seo.title}} </title>
+    <meta name="description" content="{{page.seo.meta-description}}">
+    <meta name="keywords" content="{{page.seo.meta-keywords}}">
+
+    <!--  Social media sharing META Tags -->
+    <meta property="og:title" content="{{page.seo.title}}">
+    <meta property="og:description" content="{{page.seo.meta-description}}">
+    <meta property="og:image" content="{{page.seo.featured-image_path}}">
+    <meta property="og:url" content="{{page.url}}">
+    <meta name="twitter:card" content="{{page.seo.meta-description}}">
+    <meta name="og:site_name" content="{{site.data.settings.general.site-name}}">
+
+    <!-- Font Awesome Version 6 for Icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+
+    <!-- Hide or show on Google -->
+    {% if page.seo.hide-from-google == true %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <link rel="stylesheet" href="{{ '/dist/main.css' | relative_url }}">
+    <title>{{page.title}}</title>
+</head>
