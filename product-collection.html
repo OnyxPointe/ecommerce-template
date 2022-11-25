@@ -1,31 +1,40 @@
 ---
 layout: products-page-layout
+images-grid: 
+    - img: https://images.unsplash.com/photo-1581388847562-d5a56eec1cfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+    - img: https://images.unsplash.com/photo-1609895314390-cb64c186466a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZWJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+    - img: https://images.unsplash.com/photo-1519885277449-12eee5564d68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fG1hcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+    - img: https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fG1hcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
 ---
 <!-- ----------- Featured Product ----------- -->
-<section class="grid gap-1 grid-cols-3 flex items-center">
-    <img src="https://picsum.photos/600/400?random" alt="" class="">
-    <div class="">
-        <h2 class="font-featured">Product name</h2>
-        <p>Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium repudiandae nesciunt nemo placeat totam maxime eligendi eaque laudantium molestiae quibusdam dolorem, voluptatibus cumque accusamus, rerum ut, expedita quaerat omnis at?</p>
-        <a href="#" class="p-2 border-2 inline-block">Buy button</a>
+<section class="grid gap-2 md:grid-cols-3 items-center">
+    <img src="https://picsum.photos/600/400?random" alt="" class="object-cover w-full h-[50vh]">
+    <div class="md:col-span-2 px-6">
+        <h2 class="font-featured text-2xl">Product name</h2>
+        <p class="pb-4">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium repudiandae nesciunt nemo placeat totam maxime eligendi eaque laudantium molestiae quibusdam dolorem, voluptatibus cumque accusamus, rerum ut, expedita quaerat omnis at?</p>
+        <a href="#" class="p-2 uppercase border-2 inline-block">Buy button</a>
     </div>
 </section>
 
 <!-- ----------- Popular Ebooks ----------- -->
 <section class="text-center">
-	<h4 class="text-3xl font-bold font-featured"> Popular Ebooks </h4>
+	<h4 class="text-3xl font-bold font-featured">Popular eBooks</h4>
 	<div class="grid gap-8 md:gap-2 grid-cols-1 md:grid-cols-3 p-6">
         {% assign relevant = site.ebooks | where_exp:"book","book.url != page.url" %}
         {% for book in relevant limit:3 %}
-        <a href="{{book.url}}">
-            <div class="pb-2"> 
-                <img src="{{book.img}}" class="object-cover w-full h-[50vh]"/>
-            </div>
-            <h3 class="uppercase"> {{book.product-name}} </h3>
-            <span class="author uppercase">by {{book.author}}</span>
-        </a>
+        <div class="">
+            <a class="relative flex justify-center" href="{{book.url}}"> 
+                <img src="{{book.img}}" class="object-cover w-full md:w-9/12 h-[50vh]"/>
+                <span class="absolute -right-7 md:right-5 bottom-0 inline-block uppercase m-2 mt-6 px-4 py-2 w-3/6 border-inherit bg-rich text-white hover:bg-gray-100 hover:text-rich transition"> {{book.product-name}} </span>
+            </a>
+        </div>
         {% endfor %}
 	</div>
+    <a href="/ebooks.html" class="inline-block uppercase m-2 mt-2 px-4 py-2 border-2 w-3/6 border-inherit hover:text-white hover:bg-gray-400">Shop All eBooks</a>
 </section>
 
 <!-- ----------- Popular Presets ----------- -->
@@ -34,18 +43,19 @@ layout: products-page-layout
 	<div class="grid gap-8 md:gap-2 grid-cols-1 md:grid-cols-3 p-6">
         {% assign relevant = site.presets | where_exp:"preset","preset.url != page.url" %}
         {% for preset in relevant limit:3 %}
-        <div class="">
-            <a class="flex justify-center" href="{{preset.url}}"> 
+       <div class="">
+            <a class="relative flex justify-center" href="{{preset.url}}"> 
                 <img src="{{preset.img}}" class="object-cover w-full md:w-9/12 h-[50vh]"/>
+                <span class="absolute -right-7 md:right-5 bottom-0 inline-block uppercase m-2 mt-6 px-4 py-2 w-3/6 border-inherit hover:bg-rich hover:text-white bg-gray-100 text-rich transition"> {{preset.product-name}} </span>
             </a>
-            <a href="{{preset.url}}" class="inline-block uppercase m-2 mt-6 px-4 py-2 border-2 w-3/6 border-inherit hover:text-white hover:bg-zinc-400"> {{preset.product-name}} </a>
         </div>
         {% endfor %}
 	</div>
+    <a href="/presets.html" class="inline-block uppercase m-2 mt-2 px-4 py-2 border-2 w-3/6 border-inherit hover:text-white hover:bg-gray-200">Shop All Presets</a>
 </section>
 
 <!-- ----------- Testimonials ----------- -->
-<section class="bg-zinc-300 ">
+<section class="bg-gray-200 ">
     <div class="grid grid-cols-7 pb-6">
         <p class="col-span-1 text-7xl font-rich">&#10075;&#10075;</p>
         <h3 class="col-span-5 text-3xl blod text-center font-featured">Love from our clients</h3>
@@ -57,5 +67,13 @@ layout: products-page-layout
         <p class="italic">~{{item.customer-name}}</p>
     </div>
     {% endfor %}
+</section>
+
+<!-- ----------- IG - Feed ----------- -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-2 relative">
+    {% for item in page.images-grid %}
+    <img src="{{item.img}}" alt="{{item.img-alt-text}}" class="object-cover w-full h-[30vh] md:h-[50vh]">
+    {% endfor %}
+    <a href="#" class="absolute -rotate-90 font-featured text-2xl md:text-5xl -left-10 md:top-40 top-48  hover:font-bold transition">@ighandle</a>
 </section>
 
