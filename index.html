@@ -89,7 +89,7 @@ images-grid:
 <section>
     <h2 class="text-center text-5xl font-bold">Sneak Peak</h2>
     <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus hic exercitationem sed sapiente harumem!</p>
-    <div class="grid md:grid-cols-2 py-6 flex items-center">
+    <div class="grid md:grid-cols-2 py-6 items-center">
         <img src="https://picsum.photos/id/1020/600/400" alt="">
         <div class="p-4">
             <p class="italic text-xl">This is a subheading/ product name</p>
@@ -132,23 +132,23 @@ images-grid:
 </section>
 
 <!-- Pricing -->
-<section class="grid gap-3 md:grid-cols-3 flex bg-slate-100">
+<section class="grid gap-3 md:grid-cols-3 bg-slate-100">
     {% for item in site.ebooks limit:9 %}
-    <div class="p-2 bg-zinc-300 justify-center">
+    <a href="{{item.url}}" class="p-2 bg-zinc-300 justify-center">
         <div class="pb-2"> 
                 <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
-            </div>
+        </div>
         <div class="grid grid-cols-4">
             <p class="w-full p-2 col-span-3">{{item.product-name}}</p>
             <p class="text-right p-2 col-span-1">{{item.price}}</p>
         </div>
-    </div>
+    </a>
     {% endfor %}
 </section>
 
 
 <!-- Pricing img and text-->
-<section class="grid gap-1 grid-cols-3 flex items-center">
+<section class="grid gap-1 grid-cols-3 items-center">
     <img src="https://picsum.photos/600/400?random" alt="" class="">
     <div class="">
         <h2>Product name</h2>
@@ -187,7 +187,7 @@ images-grid:
 <!-- Text and Image - F + fancy flip -->
 <!-- define "text-section" in front matter of page section is used on -->
 {% for item in page.text-section %}
-<section class="grid md:grid-cols-2 flex items-center bg-slate-100 gap-4">
+<section class="grid md:grid-cols-2 items-center bg-slate-100 gap-4">
     <div class="{% cycle 'md:col-start-2', '' %}">
         <h3 class="text-lg italic bold">{{item.sub-heading}}</h3>
         <p>{{item.text}}</p>
@@ -199,7 +199,7 @@ images-grid:
 {% endfor %}
 
 <!-- Text and Image - flip div -->
-<section class="grid md:grid-cols-2 flex items-center bg-red-200">
+<section class="grid md:grid-cols-2 items-center bg-red-200">
     <div class="{% if page.flipped == true %} col-start-2 {% endif %}">
         <h3>{{item.sub-heading}}</h3>
         <p>{{item.text}}</p>

@@ -1,0 +1,75 @@
+---
+layout: default
+images-grid: 
+    - img: https://images.unsplash.com/photo-1581388847562-d5a56eec1cfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+    - img: https://images.unsplash.com/photo-1609895314390-cb64c186466a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZWJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+    - img: https://images.unsplash.com/photo-1519885277449-12eee5564d68?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fG1hcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+    - img: https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fG1hcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60
+      img-alt-text: Alt Text
+---
+<!-- ----------- Featured eBook ----------- -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-2 bg-slate-100">
+    {% assign featuredProducts = site.presets | where_exp:"item", "item.featured == true" %}
+    {% for item in featuredProducts limit:3 %}
+    <div class="{% if forloop.index == 2 %} col-span-2 md:col-span-3 md:row-span-2{% endif %} {% if forloop.index >= 3 %} hidden md:block {% endif %}">
+        <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
+        <div class="py-4 pr-4">
+            <h3>{{item.product-name}}</h3>
+            <p>{{item.product-tag-line}}</p>
+            <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- ----------- All eBooks ----------- -->
+<section class="grid gap-3 md:grid-cols-3 flex bg-slate-100">
+    {% for item in site.ebooks limit:9 %}
+    <div class="p-2 bg-zinc-300 justify-center">
+        <div class="pb-2"> 
+                <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
+            </div>
+        <div class="grid grid-cols-4">
+            <p class="w-full p-2 col-span-3">{{item.product-name}}</p>
+            <p class="text-right p-2 col-span-1">{{item.price}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- ----------- Before and After Slider ----------- -->
+
+
+
+<!-- ----------- Embeded Video ----------- -->
+
+
+<!-- ----------- Testimonials ----------- -->
+<section class="bg-gray-200 ">
+    <div class="grid grid-cols-7 pb-6">
+        <p class="col-span-1 text-7xl font-rich">&#10075;&#10075;</p>
+        <h3 class="col-span-5 text-3xl blod text-center font-featured">Love from our clients</h3>
+        <p class="col-span-1 text-right text-7xl font-rich">&#10076;&#10076;</p>
+    </div>
+    {% for item in site.data.testimonials %}
+    <div class="text-center">
+        <p class="text-center">{{item.testimonial}}</p>
+        <p class="italic">~{{item.customer-name}}</p>
+    </div>
+    {% endfor %}
+</section>
+
+
+<!-- ----------- FAQ ----------- -->
+<section class="grid gap-2">
+    <h3 class="text-center text-5xl font-bold mb-2">FAQs</h3>
+    {% for item in site.data.faqs %}
+    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded"> 
+        <span>{{item.question}}</span>
+        <span>{{item.answer}}</span>
+    </div>
+    {% endfor %}
+</section>

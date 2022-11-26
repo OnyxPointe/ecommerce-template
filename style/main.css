@@ -22,3 +22,7 @@ section{padding:5%;}
 .playfair{
     font-family: "Playfair Display", serif;
 }
+
+.hidden {
+        display: none;
+    }

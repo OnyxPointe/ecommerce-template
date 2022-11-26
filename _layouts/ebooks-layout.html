@@ -4,3 +4,61 @@ layout: default
 
 <!-- Ebooks page -->
 {{content}}
+
+<!-- ----------- Featured eBook ----------- -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-2 bg-slate-100">
+    {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
+    {% for item in featuredProducts limit:3 %}
+    <!-- cycle or ifelse  -->
+    <div class="{% if forloop.index == 2 %} col-span-2 md:col-span-3 md:row-span-2{% endif %} {% if forloop.index >= 3 %} hidden md:block {% endif %}">
+        <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
+        <div class="py-4 pr-4">
+            <h3>{{item.product-name}}</h3>
+            <p>{{item.product-tag-line}}</p>
+            <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- ---------- Sneak Peak Slider ----------- -->
+<section>
+    <h2 class="text-center text-5xl font-bold">Sneak Peak</h2>
+    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus hic exercitationem sed sapiente harumem!</p>
+    <div class="grid md:grid-cols-2 py-6 items-center">
+        <img src="https://picsum.photos/id/1020/600/400" alt="">
+        <div class="p-4">
+            <p class="italic text-xl">This is a subheading/ product name</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit minus quod ratione repellat est maxime vero veniam, nemo ducimus dolore voluptas facere necessitatibus quisquam officia? Error quas corporis autem sapiente.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Text (text flows from one column to two)-->
+<section>
+    <!-- Also good for different sized images -->
+    <div class="md:columns-4">
+        <h2 class="px-4 text-lg uppercase">Heading</h2>
+        <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur veniam laborum quae exercitationem culpa adipisci commodi officiis repellat, eum in ipsum quis, debitis dignissimos dolorum dolores magnam pariatur! Fuga, similique. Lorem ipsum dolor sit aique. Lorem ipsum dolor smet consectetur adipisicing elit. Officia eveniet dolores reprehenderit, rem ullam suscipit, aliquam quisquam laboriosam non voluptate provident, iusto atque? At ex excepturi totam, adipisci necessitatibus ab! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores eos quidem sequi distinctio vel id necessitatibus at modi, fuga quisquam tempora possimus asperiores ad dolorem dignissimos, inventore blanditiis delectus perspiciatis.</p>
+    </div>
+</section>
+
+<!-- PLug in Section or Reviews -->
+
+<!-- Related Products - F -->
+<!-- needs custimization to this project -->
+<section class="text-center bg-slate-100">
+	<h4 class="text-2xl blod"> Related Products </h4>
+	<div class="grid gap-8 md:gap-2 grid-cols-1 md:grid-cols-3 p-6">
+        {% assign relevant = site.ebooks | where_exp:"book","book.url != page.url" %}
+        {% for book in relevant limit:3 %}
+        <a href="{{book.url}}">
+            <div class="pb-2"> 
+                <img src="{{book.img}}" class="object-cover w-full h-[50vh]"/>
+            </div>
+            <h3 class="uppercase"> {{book.product-name}} </h3>
+            <span class="author uppercase">by {{book.author}}</span>
+        </a>
+        {% endfor %}
+	</div>
+</section>

@@ -1,10 +1,10 @@
 module.exports = {
   content: [
-    './_includes/**/*.{html,md}',
-    './_layouts/**/*.{html,md}',
-    './_*/**/.{html,md}',
-    '!./_site/**/*.{html,md}',
-    './*.{html,md}'
+    './_includes/**/*.{html,md,js}',
+    './_layouts/**/*.{html,md,js}',
+    './_*/**/.{html,md,js}',
+    '!./_site/**/*.{html,md,js}',
+    './*.{html,md,js}'
   ],
   theme: {
     extend: {

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-{% include head.html %}
+    
+    {% include head.html %}
 
 <body>
     {% include header.html %}
     {{content}}
     {% include footer.html %}
     
-    <script>
+    <script src="/main.js"></script>
+    <!-- <script>
         var MemberSpace = window.MemberSpace || {"subdomain":"onyxpointe1111"};
         (function(d){
         var s = d.createElement("script");
@@ -16,7 +17,7 @@
         var e = d.getElementsByTagName("script")[0];
         e.parentNode.insertBefore(s,e);
         }(document));
-    </script>
+    </script> -->
 </body>
 
 </html>
