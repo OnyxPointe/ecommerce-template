@@ -33,9 +33,9 @@ images-grid:
         <div class="pb-2"> 
                 <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
         </div>
-        <div class="grid grid-cols-4">
-            <p class="w-full p-2 col-span-3">{{item.product-name}}</p>
-            <p class="text-right p-2 col-span-1">{{item.price}}</p>
+        <div class="flex justify-between">
+            <p class="w-full p-2">{{item.product-name}}</p>
+            <p class="text-right p-2">{{item.price}}</p>
         </div>
     </a>
     {% endfor %}

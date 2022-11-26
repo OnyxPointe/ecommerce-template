@@ -102,27 +102,19 @@ images-grid:
 <!-- <section>
 </section> -->
 
-<!-- FAQ - F -->
-<section class="grid gap-2 bg-slate-100">
-    <h3 class="text-center text-5xl font-bold mb-2">FAQs</h3>
+<!-- ----------- FAQ ----------- -->
+<section class="grid gap-2">
+    <h3 class="text-center text-3xl font-bold mb-2 font-featured">FAQs</h3>
     {% for item in site.data.faqs %}
-    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded"> 
-        <span>{{item.question}}</span>
-        <span>{{item.answer}}</span>
+    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded expand-button" data-target-button="{{forloop.index}}"> {{item.question}}
+        
     </div>
+    <div class="expandable hidden" data-target-more="{{forloop.index}}">{{item.answer}}</div>
     {% endfor %}
 </section>
 
-<!-- Add in type -->
-<section class="grid gap-2 bg-slate-100">
-    <h3 class="text-center text-5xl font-bold mb-2">FAQs</h3>
-    {% for item in site.data.faqs %}
-    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded"> 
-        <span>{{item.question}}</span>
-        <span>{{item.answer}}</span>
-    </div>
-    {% endfor %}
-</section>
+<!-- ----------- FAQ - with type ----------- -->
+
 
 <!-- Images - F? -->
 <section class="grid md:grid-cols-4 gap-2">
@@ -138,14 +130,13 @@ images-grid:
         <div class="pb-2"> 
                 <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
         </div>
-        <div class="grid grid-cols-4">
-            <p class="w-full p-2 col-span-3">{{item.product-name}}</p>
-            <p class="text-right p-2 col-span-1">{{item.price}}</p>
+        <div class="flex justify-between">
+            <p class="w-full p-2">{{item.product-name}}</p>
+            <p class="text-right p-2">{{item.price}}</p>
         </div>
     </a>
     {% endfor %}
 </section>
-
 
 <!-- Pricing img and text-->
 <section class="grid gap-1 grid-cols-3 items-center">

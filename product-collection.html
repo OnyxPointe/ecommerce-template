@@ -55,18 +55,20 @@ images-grid:
 </section>
 
 <!-- ----------- Testimonials ----------- -->
-<section class="bg-gray-200 ">
-    <div class="grid grid-cols-7 pb-6">
-        <p class="col-span-1 text-7xl font-rich">&#10075;&#10075;</p>
-        <h3 class="col-span-5 text-3xl blod text-center font-featured">Love from our clients</h3>
-        <p class="col-span-1 text-right text-7xl font-rich">&#10076;&#10076;</p>
-    </div>
-    {% for item in site.data.testimonials %}
-    <div class="text-center">
-        <p class="text-center">{{item.testimonial}}</p>
-        <p class="italic">~{{item.customer-name}}</p>
-    </div>
-    {% endfor %}
+<section class="bg-gray-100 py-24">
+        <div class="grid grid-cols-7 pb-6">
+            <p class="col-span-1 text-7xl font-rich">&#10075;&#10075;</p>
+            <h3 class="col-span-5 text-3xl blod text-center font-featured">Love from our clients</h3>
+            <p class="col-span-1 text-right text-7xl font-rich">&#10076;&#10076;</p>
+        </div>
+        <div class="slider-container">
+            {% for item in site.data.testimonials %}
+            <div class="text-center slider-item">
+                <p class="text-center">{{item.testimonial}}</p>
+                <p class="italic">~{{item.customer-name}}</p>
+            </div>
+            {% endfor %}
+        </div>
 </section>
 
 <!-- ----------- IG - Feed ----------- -->

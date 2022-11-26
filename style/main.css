@@ -26,3 +26,16 @@ section{padding:5%;}
 .hidden {
         display: none;
     }
+
+
+.slick-dots{bottom:-95px;}
+
+/* IF USING ARROWS ON SLIDER */
+/* .slick-next{right: -170px;}
+
+.slick-prev{left: -170px;}
+
+.slick-next::before, .slick-prev::before{
+    opacity: .55;
+    color:#393939;
+} */

@@ -51,3 +51,20 @@ console.log(scrollHeight);
 };
 
 window.addEventListener('scroll', stickyScroll);
+
+
+// Slick slider
+$(document).ready(function(){
+  $('.slider-container').slick({
+    autoplay: true,
+    autoplaySpeed: 8000,
+    speed: 200,
+    arrows: false,
+    accessibility: true,
+    dots: true, 
+    fade: true,
+    infinite: true,
+    pauseOnHover: true,
+    pauseOnDotHover: true
+  });
+});
