@@ -9,73 +9,76 @@ images-grid:
       img-alt-text: Alt Text
     - img: https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fG1hcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60
       img-alt-text: Alt Text
+skippedTestimonials: 3
+shopify-collection-id: 428507463968
 ---
-<!-- ----------- Featured eBook ----------- -->
-<section class="grid grid-cols-3 md:grid-cols-5 gap-2 bg-slate-100">
+
+<!-- ----------- FEATURED PRODUCTS ----------- -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-2">
     {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
     {% for item in featuredProducts limit:3 %}
     <!-- cycle or ifelse  -->
     <div class="{% if forloop.index == 2 %} col-span-2 md:col-span-3 md:row-span-2{% endif %} {% if forloop.index >= 3 %} hidden md:block {% endif %}">
         <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
         <div class="py-4 pr-4">
-            <h3>{{item.product-name}}</h3>
-            <p>{{item.product-tag-line}}</p>
-            <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+            <h3 class="uppercase">{{item.product-name}}</h3>
+            <!-- <p>{{item.product-tag-line}}</p> -->
+            <a href="{{item.url}}" class="button border py-1 px-5 inline-block hover:bg-teal-blue hover:text-white">Shop</a>
         </div>
     </div>
     {% endfor %}
 </section>
 
+
 <!-- ----------- All eBooks ----------- -->
-<section class="grid gap-3 md:grid-cols-3">
-    {% for item in site.ebooks limit:9 %}
-    <a href="{{item.url}}" class="p-2 bg-zinc-300 justify-center">
-        <div class="pb-2"> 
-                <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
-        </div>
-        <div class="flex justify-between">
-            <p class="w-full p-2">{{item.product-name}}</p>
-            <p class="text-right p-2">{{item.price}}</p>
-        </div>
-    </a>
-    {% endfor %}
+<section>
+    <div id='collection-component-1669601358573'></div>
+    {% include shopify.html %}
 </section>
 
-<!-- ---------- Sneak Peak Slider ----------- -->
+<!-- ---------- Sneak Peak ----------- -->
 <section>
-    <h2 class="text-center text-5xl font-bold">Sneak Peak</h2>
-    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus hic exercitationem sed sapiente harumem!</p>
-    <div class="grid md:grid-cols-2 py-6 items-center">
-        <img src="https://picsum.photos/id/1020/600/400" alt="">
-        <div class="p-4">
-            <p class="italic text-xl">This is a subheading/ product name</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit minus quod ratione repellat est maxime vero veniam, nemo ducimus dolore voluptas facere necessitatibus quisquam officia? Error quas corporis autem sapiente.</p>
+    <h2 class="text-center text-5xl font-bold font-featured">Sneak Peak</h2>
+    <!-- <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus hic exercitationem sed sapiente harumem!</p> -->
+    <div class="grid md:grid-cols-2 py-8 items-center gap-4">
+        <img src="images/web-jesse-williams-T0HchmcF07Q-unsplash.jpg" alt="" class="object-cover w-full h-[60vh]">
+        <div class="p-5p">
+            <div class="border-frame border-grey border-2 p-4">
+                <p class="italic text-xl pb-4">Coming soon! - New eBooks</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit minus quod ratione repellat est maxime vero veniam, nemo ducimus dolore voluptas facere necessitatibus quisquam officia? Error quas corporis autem sapiente.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ex molestiae tempore, fugit eius sint dicta quae repudiandae a deserunt quo eaque vel nisi quis repellendus, debitis nobis. Voluptatem, necessitatibus.</p>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- ----------- Testimonials ----------- -->
-<section class="bg-gray-200 ">
+<section class="bg-gray-100 py-24">
     <div class="grid grid-cols-7 pb-6">
         <p class="col-span-1 text-7xl font-rich">&#10075;&#10075;</p>
         <h3 class="col-span-5 text-3xl blod text-center font-featured">Love from our clients</h3>
         <p class="col-span-1 text-right text-7xl font-rich">&#10076;&#10076;</p>
     </div>
-    {% for item in site.data.testimonials %}
-    <div class="text-center">
-        <p class="text-center">{{item.testimonial}}</p>
-        <p class="italic">~{{item.customer-name}}</p>
+    <div class="slider-container">
+        {% for item in site.data.testimonials limit:3 %}
+        <div class="text-center slider-item">
+            <p class="text-center">{{item.testimonial}}</p>
+            <p class="italic">~{{item.customer-name}}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </section>
 
 <!-- ----------- FAQ ----------- -->
 <section class="grid gap-2">
     <h3 class="text-center text-3xl font-bold mb-2 font-featured">FAQs</h3>
-    {% for item in site.data.faqs %}
-    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded expand-button" data-target-button="{{forloop.index}}"> {{item.question}}
-        
+    {% assign typeFilter = site.data.faqs | where: 'type', 'ebook' %}
+    {% for item in typeFilter %}
+    <div class="md:grid-cols-2 bg-zinc-300 py-3 px-4 rounded expand-button {% if forloop.index == 1 %} active {% endif %}" data-target-button="{{forloop.index}}"> 
+        {{item.question}}
     </div>
-    <div class="expandable hidden" data-target-more="{{forloop.index}}">{{item.answer}}</div>
+    <div class="expandable {% unless forloop.index == 1 %} hidden {% endunless %}" data-target-more="{{forloop.index}}">
+        {{item.answer}}
+    </div>
     {% endfor %}
 </section>

@@ -1,14 +1,26 @@
-- question: Is it raining?
-  answer: 'yes'
-  type: 
-- question: Is this too confusing?
+- question: Question?
+  answer: Answer, preset
+  type: preset
+- question: Question?
+  answer: Answer, ebook
+  type: ebook
+- question: Question?
+  answer: Answer, preset
+  type: preset
+- question: Question?
   answer: >- 
-    yes
-  type: 
-- question: Is it raining?
-  answer: 'yes'
-  type:
-- question: Is this too confusing?
+    Answer, ebook
+  type: ebook
+- question: Question?
+  answer: Answer, preset
+  type: preset
+- question: Question?
+  answer: Answer, ebook
+  type: ebook
+- question: Question?
+  answer: Answer, preset
+  type: preset
+- question: Question?
   answer: >- 
-    yes
-  type: 
+    Answer, ebook
+  type: ebook

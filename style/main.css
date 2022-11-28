@@ -31,11 +31,270 @@ section{padding:5%;}
 .slick-dots{bottom:-95px;}
 
 /* IF USING ARROWS ON SLIDER */
-/* .slick-next{right: -170px;}
+.slick-next{
+    right: 0px;
+}
 
-.slick-prev{left: -170px;}
+.slick-prev{left: 0px;}
 
 .slick-next::before, .slick-prev::before{
     opacity: .55;
     color:#393939;
-} */
+}
+.sm-show{display: none;}
+
+.expand-button::before{
+    content: '+';
+}
+
+.active::before{
+    content: '-';
+}
+
+
+/* Before and After Img Slider */
+
+.ba-container {
+  position: relative;
+  width: 50vw; /* change this to suit your design */
+  padding-bottom: 53%;
+  border: 2px solid white;
+  margin:auto;
+}
+.ba-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 50vw; /* change this to suit your design */
+  background-position: left;
+}
+.ba-background-img {
+  background-image: url('/images/before.jpg');
+  background-size: cover;
+}
+.ba-foreground-img {
+  background-image: url('/images/after.jpg');
+  background-size: cover;
+  width: 50%;
+}
+.ba-slider {
+  position: absolute;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(242, 242, 242, 0);
+  outline: none;
+  margin: 0;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ .ba-slider:hover {
+   background: rgba(242, 242, 242, 0.1);
+ }
+.ba-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 6px;
+  height: 100%;
+  background: white;
+  cursor: pointer;
+}
+.ba-slider::-moz-range-thumb {
+  width: 6px;
+  height: 100%;
+  background: white;
+  cursor: pointer;
+}
+.ba-slider-button {
+  pointer-events: none;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  left: calc(50% - 18px);
+  top: calc(50% - 18px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ba-slider-button:after {
+  content: '';
+  padding: 3px;
+  display: inline-block;
+  border: solid #5D5D5D;
+  border-width: 0 2px 2px 0;
+  transform: rotate(-45deg);
+}
+.ba-slider-button:before {
+  content: '';
+  padding: 3px;
+  display: inline-block;
+  border: solid #5D5D5D;
+  border-width: 0 2px 2px 0;
+  transform: rotate(135deg);
+}
+
+
+.border-frame {
+    box-shadow: -10px -10px #7C7C7C;
+}
+
+
+/* Image accordion */
+
+.ia-container {
+	width: 685px;
+	margin: 20px auto;
+	overflow: hidden;
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.08);
+	border: 7px solid rgba(255,255,255,0.6);
+}
+
+.ia-container figure {
+    position: absolute;
+	top: 0;
+	left: 50px; /* width of visible piece */
+	width: 335px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.6);
+    transition: all 0.3s ease-in-out;
+}
+
+.ia-container > figure {
+    position: relative;
+	left: 0 !important;
+}
+
+.ia-container img {
+	display: block;
+	width: 100%;
+}
+
+.ia-container input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px; /* just cover visible part */
+	height: 100%;
+	cursor: pointer;
+	border: 0;
+	padding: 0;
+    opacity: 0;
+	z-index: 100;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.ia-container input:checked{
+	width: 5px;
+	left: auto;
+	right: 0px;
+}
+.ia-container input:checked ~ figure {
+    left: 335px;
+    transition: all 0.7s ease-in-out;
+}
+
+.ia-container figcaption {
+	width: 100%;
+	height: 100%;
+	background: rgba(87, 73, 81, 0.1);
+	position: absolute;
+	top: 0px;
+    transition: all 0.2s linear;
+}
+
+.ia-container figcaption span {
+	position: absolute;
+	top: 40%;
+	margin-top: -30px;
+	right: 20px;
+	left: 20px;
+	overflow: hidden;
+	text-align: center;
+	background: rgba(87, 73, 81, 0.3);
+	line-height: 20px;
+	font-size: 18px;
+    opacity: 0;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	font-weight: 700;
+	padding: 20px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+} 
+
+.ia-container input:checked + figcaption,
+.ia-container input:checked:hover + figcaption{
+	background: rgba(87, 73, 81, 0);
+}
+
+.ia-container input:checked + figcaption span {
+    transition: all 0.4s ease-in-out 0.5s;
+	opacity: 1;
+	top: 50%;
+}
+
+.ia-container #ia-selector-last:checked + figcaption span {
+	transition-delay: 0.3s;
+}
+
+.ia-container input:hover + figcaption {
+	background: rgba(87, 73, 81, 0.03);
+}
+
+.ia-container input:checked ~ figure input{
+    z-index: 1;
+}
+
+/* Dark Mode */
+
+.darkMode {
+        color: #fff;
+        background:#000;
+    }
+
+    #dark-btn {
+        background-color: #222;
+        height: calc(2rem + 4px);
+        width: 6rem;
+        position: relative;
+        border: 1px solid black;
+        border-radius: 1rem;
+        /* z-index:10; */
+        display:block;
+    }
+
+    #dark-btn span {
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 2rem;
+        width: 2rem;
+        right: calc(4rem - 2px);
+        left: 1px;
+        top: 1px;
+        bottom: 1px;
+        transition: 1s;
+    }
+
+    .darkMode #dark-btn {
+        background-color:#fff;
+    }
+
+    .darkMode #dark-btn span {
+        left: calc(4rem - 2px);
+        right: 1px;
+    }
+
+/* Shopify load - smoother */
+    .shop-section iframe{
+      transition: height 2s;
+    }

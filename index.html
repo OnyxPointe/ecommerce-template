@@ -20,7 +20,6 @@ images-grid:
       img-alt-text: Alt Text
 ---
 
-<a href="https://onyxpointe1111.memberspace.com/member/plans/0acf43641p">Sign Up</a>
 <!-- Featured Products - With limit -->
 <section class="grid grid-cols-3 md:grid-cols-5 gap-2 bg-slate-100">
     {% assign featuredProducts = site.ebooks | where_exp:"item", "item.featured == true" %}
@@ -156,7 +155,7 @@ images-grid:
         {% assign relevant = site.ebooks | where_exp:"book","book.url != page.url" %}
         {% for book in relevant limit:3 %}
         <a href="{{book.url}}">
-            <div class="pb-2"> 
+            <div class="pb-2">
                 <img src="{{book.img}}" class="object-cover w-full h-[50vh]"/>
             </div>
             <h3 class="uppercase"> {{book.product-name}} </h3>
@@ -243,4 +242,134 @@ images-grid:
 <!-- Banner (want bg-img, text, and overlay changable) -->
 <section style="background-image:url('https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsYWNrJTIwYW5kJTIwd2hpdGV8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60')" class="bg-cover h-[60vh] flex justify-center items-center bg-slate-100">
     <h3 class="text-2xl">This is a banner heading</h3>
+</section>
+
+
+<!-- Before and After slider -->
+<!-- <section class="h-[50vh]"> -->
+    <div class='ba-container'>
+        <div class='ba-img ba-background-img bg-cover'></div>
+        <div class='ba-img ba-foreground-img bg-cover'></div>
+        <input type="range" min="1" max="100" value="50" class="ba-slider" name='ba-slider' id="ba-slider">
+        <div class='ba-slider-button'></div>
+    </div>
+<!-- </section> -->
+
+
+<!-- All ebooks  -->
+<section class="grid gap-3 md:grid-cols-4">
+    {% for item in site.ebooks limit:8 %}
+    <div  class="p-2 bg-dark-grey text-white justify-center">
+        <a href="{{item.url}}" class="pb-2"> 
+                <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
+        </a>
+        <div class="flex justify-between">
+            <p class="w-full p-2">{{item.product-name}}</p>
+            <p class="text-right p-2">{{item.price}}</p>
+        </div>
+        <a href="#" class="border-1 text-center inline-block">Buy Now</a>
+    </div>
+    {% endfor %}
+</section>
+
+
+<!-- ----------- Featured Product ----------- -->
+<section class="grid gap-2 md:grid-cols-5 items-center bg-gray-100">
+    <img src="images/web-pierre-chatel-innocenti-nmDmcagP1lM-unsplash.jpg" alt="" class="object-cover w-full h-[50vh] col-span-3">
+    <div class="md:col-span-2 px-6">
+        <h2 class="font-featured text-2xl">Product name</h2>
+        <p class="pb-4">Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium repudiandae nesciunt nemo placeat totam maxime eligendi eaque laudantium molestiae quibusdam dolorem, voluptatibus cumque accusamus, rerum ut, expedita quaerat omnis at?</p>
+        <a href="#" class="p-2 uppercase border-2 inline-block">Buy button</a>
+    </div>
+</section>
+
+
+<!-- Image Accorion -->
+<!-- <div class="ia-container">
+				
+	<figure>
+		<img src="/workspaces/ecommerce-template/images/web-joshua-rivera-usmhPmT5sj0-unsplash.jpg" alt="image01" />
+		<input type="radio" name="radio-set" checked="checked" />
+		<figcaption><span>True Colors</span></figcaption>
+		
+		<figure>
+			<img src="/workspaces/ecommerce-template/images/web-luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="image02" />
+			<input type="radio" name="radio-set" />
+			<figcaption><span>Honest Light</span></figcaption>
+			
+			<figure>
+				<img src="/workspaces/ecommerce-template/images/web-luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="image02" />
+                <input type="radio" name="radio-set" />
+                <figcaption><span>Honest Light</span></figcaption>
+				
+				<figure>
+					<img src="/workspaces/ecommerce-template/images/web-luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="image02" />
+                    <input type="radio" name="radio-set" />
+                    <figcaption><span>Honest Light</span></figcaption>
+					
+					<figure>
+						<img src="/workspaces/ecommerce-template/images/web-luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="image02" />
+                        <input type="radio" name="radio-set" />
+                        <figcaption><span>Honest Light</span></figcaption>
+						
+						<figure>
+							<img src="/workspaces/ecommerce-template/images/web-luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="image02" />
+                            <input type="radio" name="radio-set" />
+                            <figcaption><span>Honest Light</span></figcaption>
+                                
+							<figure>
+								<img src="/workspaces/ecommerce-template/images/web-luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="image02" />
+                                <input type="radio" name="radio-set" />
+                                <figcaption><span>Honest Light</span></figcaption>										
+
+								<figure>
+									<img src="/workspaces/ecommerce-template/images/web-luca-bravo-alS7ewQ41M8-unsplash.jpg" alt="image02" />
+                                    <input type="radio" name="radio-set" />
+                                    <figcaption><span>Honest Light</span></figcaption>
+								</figure>
+								
+							</figure>
+				
+						</figure>	
+							
+					</figure>	
+						
+				</figure>
+					
+			</figure>
+			
+		</figure>
+		
+	</figure> -->
+	
+
+    <!-- All eBooks Presets page -->
+    <section class="grid gap-3 md:grid-cols-3">
+    {% for item in site.ebooks limit:9 %}
+    <div class="p-2 bg-zinc-300 justify-center">
+        <div class="pb-2"> 
+                <img src="{{item.img}}" class="object-cover w-full h-tall-50" alt="{{item.img-alt-text}}"/>
+            </div>
+        <div class="grid grid-cols-4">
+            <p class="w-full p-2 col-span-3">{{item.product-name}}</p>
+            <p class="text-right p-2 col-span-1">{{item.price}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+
+<!-- ----------- Featured PRESET PAGE CODE ----------- -->
+<section class="grid grid-cols-3 md:grid-cols-5 gap-2">
+    {% assign featuredProducts = site.presets | where_exp:"item", "item.featured == true" %}
+    {% for item in featuredProducts limit:3 %}
+    <div class="{% if forloop.index == 2 %} col-span-2 md:col-span-3 md:row-span-2{% endif %} {% if forloop.index >= 3 %} hidden md:block {% endif %}">
+        <div class="bg-cover bg-center h-[50vh]" style="background-image:url('{{item.img}}')"></div>
+        <div class="py-4 pr-4">
+            <h3>{{item.product-name}}</h3>
+            <p>{{item.product-tag-line}}</p>
+            <a href="{{item.url}}" class="button border p-2 inline-block">Shop</a>
+        </div>
+    </div>
+    {% endfor %}
 </section>
